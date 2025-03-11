@@ -1,11 +1,3 @@
-:root {
-    --bg-color: white;
-    --text-color: #222222;
-    --edit-color: #808080;
-    --help-text: rgba(34, 34, 34, 0.5);
-    --count-text: rgba(34, 34, 34, 0.5);
-}
-
 .navigation {
     display: flex;
     flex-direction: column;
