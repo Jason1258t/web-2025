@@ -12,9 +12,14 @@
             rel="stylesheet"
         />
     </head>
+    <script>
+        function redirectToPage(page) {
+            window.location.href = page; // Для вашего случая с Nginx
+        }
+    </script>
     <body>
         <div class="navigation">
-            <div class="nav-item">
+            <div class="nav-item" onclick="redirectToPage('/home')">
                 <img src="../assets/home.svg" alt="Home" />
             </div>
             <div class="nav-item">
@@ -89,4 +94,3 @@
         </div>
     </body>
 </html>
-
