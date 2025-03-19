@@ -65,14 +65,14 @@ body {
     margin: 0;
 }
 
-#name {
+.name {
     font-size: 32px;
     font-weight: 500;
     margin-top: 20px;
     margin-bottom: 10px;
 }
 
-#description {
+.description {
     width: 360px;
     font-size: 15px;
     font-weight: 400;
