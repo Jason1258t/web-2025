@@ -3,7 +3,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Golos Text";
+    font-family: "Golos Text", sans-serif;
 }
 
 .wrapper {
@@ -30,7 +30,7 @@ body {
 .about {
     margin-bottom: 5px;
     color: #222222;
-    font-family: "Golos Text";
+    font-family: "Golos Text", sans-serif;
     font-size: 15px;
     margin-top: 16px;
 }
@@ -68,6 +68,6 @@ input[type="button"] {
     color: white;
     font-size: 16px;
     font-weight: 500;
-    font-family: "Golos Text";
+    font-family: "Golos Text", sans-serif;
     cursor: pointer;
 }

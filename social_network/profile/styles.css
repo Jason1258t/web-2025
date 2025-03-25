@@ -34,14 +34,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: row;
-    font-family: "Golos Text";
-}
-
-.wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
+    font-family: "Golos Text", sans-serif;
 }
 
 .profile {
@@ -102,7 +95,7 @@ body {
         auto-fit,
         minmax(320px, 1fr)
     ); /* Responsive columns */
-    gap: 0; /* Space between images */
+    gap: 2; /* Space between images */
     max-width: 1024px; /* Adjust as needed */
     margin: 42px auto 0; /* Centering the grid */
 }
