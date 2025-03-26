@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <form method="GET">
+    <form method="POST">
         Введите дату (ДД.ММ.ГГГГ):
         <input type="text" name="date"
             pattern="\d{2}\.\d{2}\.\d{4}"
@@ -14,11 +14,45 @@
         <input type="submit" value="Узнать">
     </form>
 
-    <?php if ($_SERVER["REQUEST_METHOD"] === "GET") {
-        $input = $_GET["date"] ?? "";
-        $parts = explode(".", $input);
-        $day = (int) ($parts[0] ?? 0);
-        $month = (int) ($parts[1] ?? 0);
+    <?php if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $input = $_POST["date"] ?? "";
+
+        function simpleParse($input)
+        {
+            try {
+                $parts = explode(".", $input);
+                $day = (int) ($parts[0] ?? 0);
+                $month = (int) ($parts[1] ?? 0);
+                $year = (int) ($parts[2] ?? 2000);
+
+                return new DateTime("$year-$month-$day");
+            } catch (Exception $e) {
+                return null;
+            }
+        }
+
+        function timestampParse($input)
+        {
+            try {
+                return new DateTime($input);
+            } catch (Exception $e) {
+                return null;
+            }
+        }
+
+        try {
+            $date = simpleParse($input);
+            if (!$date instanceof DateTime) {
+                $date = timestampParse($input);
+            }
+        } catch (Exception $e) {
+            $date = new DateTime(); // или другое значение по умолчанию
+        }
+
+
+
+        $day = $date->format('d');
+        $month = $date->format('M');
 
         $zodiac = [
             ["Козерог", [12, 22], [1, 19]],
@@ -46,7 +80,7 @@
             }
         }
 
-        echo "<h3>Результат: $result</h3>";
+        echo "<h3>Результат: $result <br/> $date</h3>";
     } ?>
 </body>
 
