@@ -1,0 +1,66 @@
+[
+    {
+        "id": 1,
+        "userId": 1,
+        "images": ["../images/mock/postPick1.jpg"],
+        "likesCount": 203,
+        "description": "Так красиво сегодня на улице! Настоящая зима)) Вспоминается Бродский: «Поздно ночью, в уснувшей долине, на самом дне, в городке, занесенном снегом по ручку двери...»",
+        "createdAt": 1234123727
+    },
+    {
+        "id": 2,
+        "userId": 2,
+        "images": ["../images/mock/postPick2.jpg"],
+        "likesCount": 145,
+        "description": null,
+        "createdAt": 1234223827
+    },
+    {
+        "id": 3,
+        "userId": 1,
+        "images": ["../images/mock/postPick3.jpg"],
+        "likesCount": 321,
+        "description": "Люблю вечерний свет в городе. Всё кажется таким тёплым и спокойным.",
+        "createdAt": 1234323927
+    },
+    {
+        "id": 4,
+        "userId": 2,
+        "images": ["../images/mock/postPick4.jpg"],
+        "likesCount": 87,
+        "description": null,
+        "createdAt": 1234424027
+    },
+    {
+        "id": 5,
+        "userId": 1,
+        "images": ["../images/mock/postPick5.jpg"],
+        "likesCount": 405,
+        "description": "Утренний кофе и немного книг — лучшее начало выходного ☕📖",
+        "createdAt": 1234524127
+    },
+    {
+        "id": 6,
+        "userId": 2,
+        "images": ["../images/mock/postPick6.jpg"],
+        "likesCount": 192,
+        "description": "Немного уюта в пасмурный день. Включила плейлист дождя и просто отдыхаю.",
+        "createdAt": 1234624227
+    },
+    {
+        "id": 7,
+        "userId": 1,
+        "images": ["../images/mock/postPick7.jpg"],
+        "likesCount": 274,
+        "description": null,
+        "createdAt": 1234724327
+    },
+    {
+        "id": 8,
+        "userId": 2,
+        "images": ["../images/mock/postPick8.jpg"],
+        "likesCount": 359,
+        "description": "Поймал этот кадр случайно — удивительно, как природа умеет удивлять 🌄",
+        "createdAt": 1234824427
+    }
+]

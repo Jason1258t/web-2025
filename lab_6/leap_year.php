@@ -15,7 +15,7 @@
     </form>
 
     <?php if ($_SERVER["REQUEST_METHOD"] === "GET") {
-        $_POST = (int) $_GET["year"];
+        $year = (int) $_GET["year"];
 
         function isLeapYear($year)
         {
