@@ -25,7 +25,9 @@ function validateTime($time)
 
 function validateUser($user)
 {
-    return validateName($user['name']) && validateId($user);
+    return validateName($user['name']) &&
+        validateId($user) &&
+        is_int($user['postCount']);
 }
 
 
