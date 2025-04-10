@@ -21,9 +21,13 @@ if (!isset($user, $post)) {
             src=<?= htmlspecialchars($post['images'][0]) ?>
             alt="post image"
             class="content" />
-        <p class="count">1/3</p>
-        <img src="src/left.png" alt="" class="left" />
-        <img src="src/right.png" alt="" class="right" />
+        <?php if (count($post['images'] ?? []) > 1): ?>
+            <div class="image-navigation">
+                <p class="count">1/<?= count($post['images']) ?></p>
+                <img src="src/left.png" alt="Previous" class="left" />
+                <img src="src/right.png" alt="Next" class="right" />
+            </div>
+        <?php endif; ?>
     </div>
     <div class="likes">
         <img src="../assets/like.png" alt="Like" />
