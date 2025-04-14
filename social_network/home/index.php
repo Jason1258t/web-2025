@@ -1,42 +1,59 @@
 <?php
 require_once "../utils/validators.php";
 
-$users = json_decode(file_get_contents("../mock_data/users.json"), true);
-$posts = json_decode(file_get_contents("../mock_data/posts.json"), true);
+// $users = json_decode(file_get_contents("../mock_data/users.json"), true);
+// $posts = json_decode(file_get_contents("../mock_data/posts.json"), true);
 
-if (empty($users) || empty($posts)) {
-    die('Невозможно подгрузить данные');
-}
+// if (empty($users) || empty($posts)) {
+//     die('Невозможно подгрузить данные');
+// }
 
 
-foreach ($users as $user) {
-    if (!validateUser($user)) die('Некорректные данные пользователей');
-}
+// foreach ($users as $user) {
+//     if (!validateUser($user)) die('Некорректные данные пользователей');
+// }
+
+// foreach ($posts as $key => $post) {
+//     $posts[$key]['author'] = findUser($users, $post["userId"]);
+//     if (!validatePost($post)) die('Некорректные данные постов');
+    
+// }
+
+
+// function getUserPosts($userId, $users, $posts)
+// {
+
+//     foreach ($users as $user) {
+//         if ($user['id'] == $userId) {
+//             return array_filter($posts, function ($post) use ($userId) {
+//                 return $post['userId'] == $userId;
+//             });
+//         }
+//     }
+//     return null;
+// }
+
+// $userId = $_GET["id"] ?? null;
+// if ($userId != null) {
+//     $posts = getUserPosts($userId, $users, $posts);
+//     if ($posts == null) die("Невозможно найти посты для пользователя с id $userId");
+// }
+
+
+require_once '../data/posts.php';
 
 foreach ($posts as $post) {
-    if (!validatePost($post)) die('Некорректные данные постов');
-}
-
-
-function getUserPosts($userId, $users, $posts)
-{
-
-    foreach ($users as $user) {
-        if ($user['id'] == $userId) {
-            return array_filter($posts, function ($post) use ($userId) {
-                return $post['userId'] == $userId;
-            });
-        }
+    if (!validatePost($post)) {
+        print_r($post);
+        die('Некорректные данные постов');
     }
-    return null;
 }
-$userId = $_GET["id"] ?? null;
-if ($userId != null) {
-    $posts = getUserPosts($userId, $users, $posts);
-    if ($posts == null) die("Невозможно найти посты для пользователя с id $userId");
-}
+
+
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -74,7 +91,6 @@ if ($userId != null) {
     <div class="wrapper">
         <div class="posts">
             <?php foreach ($posts as $post) {
-                $user = findUser($users, $post["userId"]);
                 include "post-template.php";
             } ?>
         </div>

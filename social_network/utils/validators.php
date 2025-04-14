@@ -34,8 +34,8 @@ function validateUser($user)
 function validatePost($post)
 {
     return validateId($post) &&
-        validateTime($post['createdAt']) &&
-        is_int($post['likesCount']) &&
-        isset($post['userId']) &&
-        is_int($post['userId']);
+        // validateTime($post['createdAt']) &&
+        is_int($post['likesCount']);
+        // isset($post['userId']) &&
+        // is_int($post['userId']);
 }

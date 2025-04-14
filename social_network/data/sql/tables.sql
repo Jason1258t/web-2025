@@ -1,0 +1,28 @@
+DROP TABLE IF EXISTS post_image;
+DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS user;
+
+CREATE TABLE user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    avatar VARCHAR(100) NOT NULL,
+    bio VARCHAR(255) NOT NULL 
+);
+
+CREATE TABLE post (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    description TEXT,
+    user_id INT,
+    likes_count INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+CREATE TABLE post_image (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    post_id INT NOT NULL,
+    image_path VARCHAR(255) NOT NULL,
+    sort_order INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (post_id) REFERENCES post(id) ON DELETE CASCADE
+);

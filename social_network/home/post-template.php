@@ -1,5 +1,5 @@
 <?php
-if (!isset($user, $post)) {
+if (!isset($post)) {
     echo "broken post";
     return;
 }
@@ -8,10 +8,10 @@ if (!isset($user, $post)) {
     <div class="userdata">
         <div class="row">
             <img
-                src=<?= htmlspecialchars($user['avatar']) ?>
+                src=<?= htmlspecialchars($post['author']['avatar']) ?>
                 alt="user avatar"
                 class="avatar" />
-            <p class="text"><?= htmlspecialchars($user['name']) ?></p>
+            <p class="text"><?= htmlspecialchars($post['author']['name']) ?></p>
         </div>
 
         <img src="../assets/edit.svg" alt="Edit" class="edit" />
