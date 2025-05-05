@@ -19,7 +19,10 @@ function validateId($obj)
     return isset($obj['id']) && is_int($obj['id']);
 }
 function validateTime($time)
-{
+{   
+    echo(time());
+    echo(' ');
+    echo($time);
     return time() > $time;
 };
 

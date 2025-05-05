@@ -27,6 +27,16 @@ if ($user == null) {
 $posts = array_filter($posts, function ($post) use ($userId) {
     return $post["userId"] == $userId;
 });
+
+require_once '../data/posts.php';
+
+foreach ($posts as $post) {
+    if (!validatePost($post)) {
+        print_r($post);
+        die('Некорректные данные постов');
+    }
+}
+
 ?>
 
 

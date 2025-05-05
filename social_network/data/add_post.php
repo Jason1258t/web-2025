@@ -11,7 +11,6 @@ if ($method !== 'POST') {
 }
 
 try {
-    // Проверка и парсинг JSON (из поля json в form-data)
     if (!isset($_POST['json'])) {
         throw new Exception('Missing JSON data');
     }
@@ -21,7 +20,6 @@ try {
         throw new Exception('Invalid JSON: ' . json_last_error_msg());
     }
 
-    // Валидация данных
     if (empty($input['description'])) {
         throw new Exception('Description is required');
     }
@@ -34,12 +32,10 @@ try {
         throw new Exception('Invalid or missing user_id');
     }
 
-    // Валидация наличия файла
     if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
         throw new Exception('Image file is required and must be uploaded successfully');
     }
 
-    // Валидация типа файла
     $fileTmp = $_FILES['image']['tmp_name'];
     $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
     $mimeType = finfo_file($fileInfo, $fileTmp);
@@ -50,7 +46,6 @@ try {
         throw new Exception('Only JPG, PNG, or GIF images are allowed');
     }
 
-    // Сохранение изображения
     $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
     $filename = uniqid('img_') . '.' . $ext;
     $uploadDir = '../images/posts/';
@@ -63,17 +58,14 @@ try {
         throw new Exception('Failed to save uploaded image');
     }
 
-    // Сохранение в базу данных
     $pdo = connectDatabase();
 
-    // Проверка наличия пользователя
     $stmt = $pdo->prepare("SELECT id FROM user WHERE id = ?");
     $stmt->execute([$input['user_id']]);
     if (!$stmt->fetch()) {
         throw new Exception('User not found');
     }
 
-    // Вставка поста
     $stmt = $pdo->prepare("INSERT INTO post (description, user_id) VALUES (?, ?)");
     $stmt->execute([
         $input['description'],
