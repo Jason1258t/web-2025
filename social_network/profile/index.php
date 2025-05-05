@@ -47,6 +47,7 @@ foreach ($posts as $post) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../styles/main.css" />
     <title>Profile</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -73,7 +74,7 @@ foreach ($posts as $post) {
             <img src="../assets/plus.svg" alt="Plus" class="nav__icon" />
         </div>
     </nav>
-    <div class="page__content">
+    <div class="page__wrapper">
         <div class="profile">
             <img src="<?= $user['avatar'] ?>" alt="User avatar" class="profile__avatar" />
             <h1 class="profile__name"><?= $user['name'] ?></h1>

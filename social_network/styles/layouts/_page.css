@@ -1,0 +1,8 @@
+.page {
+    display: flex;
+    font-family: "Golos Text", sans-serif;
+  }
+  
+  .page__wrapper {
+    flex: 1;
+  }
