@@ -1,18 +1,16 @@
 <?php
 if (!isset($post)) {
-    echo "broken post";
+    echo "post data not passed";
     return;
 }
 ?>
 <div class="post">
     <div class="post__header">
         <div class="post__user">
-            <div class="post__avatar">
-                <img
-                    src="<?= htmlspecialchars($post['author']['avatar']) ?>"
-                    alt="user avatar"
-                    class="post__avatar-img" />
-            </div>
+            <img
+                src="<?= htmlspecialchars($post['author']['avatar']) ?>"
+                alt="user avatar"
+                class="post__avatar" />
             <p class="post__username"><?= htmlspecialchars($post['author']['name']) ?></p>
         </div>
         <img src="../assets/edit.svg" alt="Edit" class="post__edit" />
