@@ -5,7 +5,6 @@ if (!isset($post)) {
 
 ?>
 
-<img
-    src=<?= $post['images'][0] ?>
-    alt="post"
-    class="pic" />
+<img src="<?= $post['images'][0] ?>"
+    alt="Post image"
+    class="posts-grid__image" />

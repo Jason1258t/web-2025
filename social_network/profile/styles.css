@@ -1,12 +1,18 @@
-.navigation {
+:root {
+    --help-text: rgba(34, 34, 34, 0.5);
+    --count-text: rgba(34, 34, 34, 0.5);
+    --bg-light: #f2f3f5;
+}
+
+.nav {
     display: flex;
     flex-direction: column;
     width: 40px;
-    padding: 20px 5px 20px 5px;
+    padding: 20px 5px;
 }
 
-.nav-item {
-    padding: 8px 8px 0 8px;
+.nav__item {
+    padding: 8px 8px 0;
     margin-bottom: 16px;
     cursor: pointer;
     height: 40px;
@@ -18,23 +24,29 @@
     align-items: center;
 }
 
-.nav-item img {
+.nav__item--active .nav__dot {
+    display: block;
+}
+
+.nav__icon {
     width: 24px;
     height: 24px;
 }
-.dot {
+
+.nav__dot {
     width: 4px;
     height: 4px;
     border-radius: 50%;
     background-color: #222;
+    display: none;
 }
 
-body {
+.page {
     display: flex;
     font-family: "Golos Text", sans-serif;
 }
 
-.content-wrapper {
+.page__content {
     flex: 1;
 }
 
@@ -46,63 +58,55 @@ body {
     align-items: center;
 }
 
-.avatar {
+.profile__avatar {
     width: 70px;
     height: 70px;
     border-radius: 16px;
     object-fit: cover;
 }
 
-.text {
-    text-align: center;
-    font-size: 14px;
-    margin: 0;
-}
-
-.name {
+.profile__name {
     font-size: 32px;
     font-weight: 500;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin: 20px 0 10px;
+    text-align: center;
 }
 
-.description {
+.profile__bio {
     width: 360px;
     font-size: 15px;
     font-weight: 400;
-    margin-bottom: 12px;
+    margin: 0 0 12px;
+    text-align: center;
+    color: var(--help-text);
 }
 
-.counter {
+.profile__stats {
     display: flex;
-    flex-direction: row;
     align-items: center;
     font-size: 15px;
     font-weight: 400;
-    background-color: #f2f3f5;
+    background-color: var(--bg-light);
     padding: 6px 10px;
     border-radius: 6px;
 }
 
-.counter img {
+.profile__stats-icon {
     width: 16px;
     height: 16px;
     margin-right: 6px;
 }
 
-.userposts {
+.posts-grid {
     display: grid;
-    grid-template-columns: repeat(
-        auto-fit,
-        minmax(320px, 1fr)
-    ); /* Responsive columns */
-    gap: 2; /* Space between images */
-    max-width: 1024px; /* Adjust as needed */
-    margin: 42px auto 0; /* Centering the grid */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2px;
+    max-width: 1024px;
+    margin: 42px auto 0;
 }
 
-.userposts img {
+.posts-grid__image {
     width: 320px;
     height: 320px;
-    object-fit: cover; /* Ensures images maintain aspect ratio */
+    object-fit: cover;
 }

@@ -16,7 +16,6 @@ foreach ($users as $user) {
 foreach ($posts as $key => $post) {
     $posts[$key]['author'] = findUser($users, $post["userId"]);
     if (!validatePost($post)) die('Некорректные данные постов');
-    
 }
 
 
@@ -75,26 +74,28 @@ foreach ($posts as $post) {
     }
 </script>
 
-<body>
-    <div class="navigation">
-        <div class="nav-item">
-            <img src="../assets/home.svg" alt="Home" />
-            <div class="dot"></div>
+<body class="page">
+    <nav class="nav">
+        <div class="nav__item nav__item--active">
+            <img src="../assets/home.svg" alt="Home" class="nav__icon" />
+            <div class="nav__dot"></div>
         </div>
-        <div class="nav-item" onclick="redirectToPage('/profile')">
-            <img src="../assets/profile.svg" alt="Profile" />
+        <div class="nav__item" onclick="redirectToPage('/profile')">
+            <img src="../assets/profile.svg" alt="Profile" class="nav__icon" />
         </div>
-        <div class="nav-item">
-            <img src="../assets/plus.svg" alt="Plus" />
+        <div class="nav__item">
+            <img src="../assets/plus.svg" alt="Plus" class="nav__icon" />
         </div>
-    </div>
-    <div class="wrapper">
-        <div class="posts">
+    </nav>
+    <div class="page__wrapper">
+        <div class="feed">
             <?php foreach ($posts as $post) {
                 include "post-template.php";
             } ?>
         </div>
     </div>
 </body>
+
+</html>
 
 </html>

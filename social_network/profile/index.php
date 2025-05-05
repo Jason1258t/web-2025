@@ -60,35 +60,33 @@ foreach ($posts as $post) {
     }
 </script>
 
-<body>
-    <div class="navigation">
-        <div class="nav-item" onclick="redirectToPage('/home')">
-            <img src="../assets/home.svg" alt="Home" />
+<body class="page">
+    <nav class="nav">
+        <div class="nav__item" onclick="redirectToPage('/home')">
+            <img src="../assets/home.svg" alt="Home" class="nav__icon" />
         </div>
-        <div class="nav-item">
-            <img src="../assets/profile.svg" alt="Profile" />
-            <div class="dot"></div>
+        <div class="nav__item nav__item--active">
+            <img src="../assets/profile.svg" alt="Profile" class="nav__icon" />
+            <div class="nav__dot"></div>
         </div>
-        <div class="nav-item">
-            <img src="../assets/plus.svg" alt="Plus" />
+        <div class="nav__item">
+            <img src="../assets/plus.svg" alt="Plus" class="nav__icon" />
         </div>
-    </div>
-    <div class="content-wrapper">
+    </nav>
+    <div class="page__content">
         <div class="profile">
-            <img src=<?= $user['avatar'] ?> alt="User 1" class="avatar" />
-            <p class="text name"><?= $user['name'] ?></p>
-            <p class="text description">
-                <?= $user['bio'] ?>
-            </p>
-            <div class="counter">
-                <img src="../assets/img.svg" alt="Posts" />
-                <p class="text"><?= $user['postCount'] ?> posts</p>
+            <img src="<?= $user['avatar'] ?>" alt="User avatar" class="profile__avatar" />
+            <h1 class="profile__name"><?= $user['name'] ?></h1>
+            <p class="profile__bio"><?= $user['bio'] ?></p>
+            <div class="profile__stats">
+                <img src="../assets/img.svg" alt="Posts icon" class="profile__stats-icon" />
+                <span><?= $user['postCount'] ?> posts</span>
             </div>
-
-            <div class="userposts">
+            <div class="posts-grid">
                 <?php foreach ($posts as $post) {
                     include "post.php";
-                } ?>
+                }
+                ?>
             </div>
         </div>
     </div>
