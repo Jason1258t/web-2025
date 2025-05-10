@@ -16,17 +16,32 @@ if (!isset($post)) {
         <img src="../assets/edit.svg" alt="Edit" class="post__edit" />
     </div>
     <div class="post__content">
-        <img
-            src="<?= htmlspecialchars($post['images'][0]) ?>"
-            alt="post image"
-            class="post__image" />
-        <?php if (count($post['images'] ?? []) > 1): ?>
-            <div class="post__image-navigation">
-                <p class="post__image-count">1/<?= count($post['images']) ?></p>
-                <img src="src/left.png" alt="Previous" class="post__nav-button post__nav-button--left" />
-                <img src="src/right.png" alt="Next" class="post__nav-button post__nav-button--right" />
-            </div>
-        <?php endif; ?>
+        <div class="post__slider">
+            <?php foreach ($post['images'] as $index => $image): ?>
+                <div class="post__slide <?= $index === 0 ? 'post__slide--active' : '' ?>">
+                    <img
+                        src="<?= htmlspecialchars($image) ?>"
+                        alt="post image"
+                        class="post__image" />
+                </div>
+            <?php endforeach; ?>
+
+            <?php if (count($post['images'] ?? []) > 1): ?>
+                <div class="post__slider-controls">
+                    <div class="post__slider-arrows">
+                        <button class="post__slider-arrow post__slider-arrow--prev">
+                            <img src="../assets/left.svg" alt="Previous" />
+                        </button>
+                        <button class="post__slider-arrow post__slider-arrow--next">
+                            <img src="../assets/right.svg" alt="Next" />
+                        </button>
+                    </div>
+                    <div class="post__slider-counter">
+                        <span class="post__slider-current">1</span>/<?= count($post['images']) ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
     <div class="post__like">
         <img src="../assets/like.png" alt="Like" class="post__like-icon" />

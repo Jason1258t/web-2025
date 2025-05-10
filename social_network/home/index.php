@@ -47,21 +47,16 @@ foreach ($posts as $post) {
         die('Некорректные данные постов');
     }
 }
-
-
-
 ?>
-
 
 
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="../styles/main.css"/>
+    <link rel="stylesheet" href="../shared/styles/main.css" />
     <title>Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -95,8 +90,7 @@ foreach ($posts as $post) {
             } ?>
         </div>
     </div>
+    <script src="sliders.js"></script>
 </body>
-
-</html>
 
 </html>

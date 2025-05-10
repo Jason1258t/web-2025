@@ -58,14 +58,35 @@ VALUES (
         0,
         FROM_UNIXTIME(1234223827)
     ),
+
+    (
+        1,
+        '../images/mock/postPick2.jpg',
+        0,
+        FROM_UNIXTIME(1234223827)
+    ),
     (
         3,
         '../images/mock/postPick3.jpg',
         0,
         FROM_UNIXTIME(1234323927)
     ),
+
+    (
+        2,
+        '../images/mock/postPick3.jpg',
+        0,
+        FROM_UNIXTIME(1234323927)
+    ),
     (
         4,
+        '../images/mock/postPick4.jpg',
+        0,
+        FROM_UNIXTIME(1234424027)
+    ),
+
+    (
+        2,
         '../images/mock/postPick4.jpg',
         0,
         FROM_UNIXTIME(1234424027)
