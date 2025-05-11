@@ -1,11 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const sliders = document.querySelectorAll(".slider");
+    const posts = document.querySelectorAll(".post");
 
-    sliders.forEach((slider) => {
-        const slides = slider.querySelectorAll(".slider__slide");
-        const prevBtn = slider.querySelector(".slider__arrow--prev");
-        const nextBtn = slider.querySelector(".slider__arrow--next");
-        const counter = slider.querySelector(".slider__current");
+    posts.forEach((post) => {
+        const slider = post.querySelector(".post__slider");
+        if (!slider) return;
+
+        const slides = post.querySelectorAll(".post__slide");
+        const prevBtn = post.querySelector(".post__slider-arrow--prev");
+        const nextBtn = post.querySelector(".post__slider-arrow--next");
+        const counter = post.querySelector(".post__slider-current");
 
         if (slides.length <= 1) return;
 
@@ -14,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         function updateSlider() {
             slides.forEach((slide, index) => {
                 slide.classList.toggle(
-                    "slider__slide--active",
+                    "post__slide--active",
                     index === currentSlide
                 );
             });
@@ -26,13 +29,13 @@ document.addEventListener("DOMContentLoaded", function () {
             // Обновление состояния кнопок
             if (prevBtn) {
                 prevBtn.classList.toggle(
-                    "slider__arrow--active",
+                    "post__slider-arrow--active",
                     currentSlide > 0
                 );
             }
             if (nextBtn) {
                 nextBtn.classList.toggle(
-                    "slider__arrow--active",
+                    "post__slider-arrow--active",
                     currentSlide < slides.length - 1
                 );
             }
