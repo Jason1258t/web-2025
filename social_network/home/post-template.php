@@ -18,8 +18,7 @@ if (!isset($post)) {
     <div class="post__content">
         <?php
         $images = $post['images'];
-        $displayCounter = true;
-        include "../shared/components/slider/slider.php";
+        include "./slider/slider.php";
         ?>
     </div>
     <div class="post__like">

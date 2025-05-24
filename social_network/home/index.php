@@ -58,7 +58,8 @@ foreach ($posts as $post) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="../shared/styles/main.css" />
-    <link rel="stylesheet" href="../shared/components/slider/styles.css" />
+    <link rel="stylesheet" href="./slider/styles.css" />
+    <link rel="stylesheet" href="../shared/components/overlays/post_images/styles.css" />
     <title>Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -72,7 +73,7 @@ foreach ($posts as $post) {
     }
 </script>
 
-<body class="page">
+<body>
     <nav class="nav">
         <div class="nav__item nav__item--active">
             <img src="../assets/home.svg" alt="Home" class="nav__icon" />
@@ -85,14 +86,16 @@ foreach ($posts as $post) {
             <img src="../assets/plus.svg" alt="Plus" class="nav__icon" />
         </div>
     </nav>
-    <div class="page__wrapper">
-        <div class="feed">
-            <?php foreach ($posts as $post) {
-                include "post-template.php";
-            } ?>
-        </div>
+
+    <div class="feed">
+        <?php foreach ($posts as $post) {
+            include "post-template.php";
+        } ?>
     </div>
-    <script src="sliders.js"></script>
+
+    <?php include "../shared/components/overlays/post_images/overlay.php" ?>
+    <script type="module" src="slider/postSliders.js"></script>
+    <script type="module" src="modal.js"></script>
 </body>
 
 </html>

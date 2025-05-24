@@ -74,23 +74,23 @@ foreach ($posts as $post) {
             <img src="../assets/plus.svg" alt="Plus" class="nav__icon" />
         </div>
     </nav>
-    <div class="page__wrapper">
-        <div class="profile">
-            <img src="<?= $user['avatar'] ?>" alt="User avatar" class="profile__avatar" />
-            <h1 class="profile__name"><?= $user['name'] ?></h1>
-            <p class="profile__bio"><?= $user['bio'] ?></p>
-            <div class="profile__stats">
-                <img src="../assets/img.svg" alt="Posts icon" class="profile__stats-icon" />
-                <span><?= $user['postCount'] ?> posts</span>
-            </div>
-            <div class="posts-grid">
-                <?php foreach ($posts as $post) {
-                    include "post.php";
-                }
-                ?>
-            </div>
+
+    <div class="profile">
+        <img src="<?= $user['avatar'] ?>" alt="User avatar" class="profile__avatar" />
+        <h1 class="profile__name"><?= $user['name'] ?></h1>
+        <p class="profile__bio"><?= $user['bio'] ?></p>
+        <div class="profile__stats">
+            <img src="../assets/img.svg" alt="Posts icon" class="profile__stats-icon" />
+            <span><?= $user['postCount'] ?> posts</span>
+        </div>
+        <div class="posts-grid">
+            <?php foreach ($posts as $post) {
+                include "post.php";
+            }
+            ?>
         </div>
     </div>
+
 </body>
 
 </html>

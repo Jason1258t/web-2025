@@ -37,7 +37,7 @@
 
 .slider__arrow {
     pointer-events: auto;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(12.95px);
     border: none;
     border-radius: 50%;

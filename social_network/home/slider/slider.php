@@ -1,14 +1,10 @@
 <?php
-
-/**
- * @param array $images - массив путей к изображениям
- */
 if (!isset($images) || empty($images)) return;
 ?>
 <div class="slider">
 
     <?php foreach ($images as $index => $image): ?>
-        <div class="slider__slide <?= $index === 0 ? 'slider__slide--active' : '' ?>">
+        <div class="slider__slide">
             <img src="<?= htmlspecialchars($image) ?>" alt="Slide <?= $index + 1 ?>" class="slider__image">
         </div>
     <?php endforeach; ?>
@@ -25,10 +21,8 @@ if (!isset($images) || empty($images)) return;
                 </button>
             </div>
         </div>
-        <?php if (isset($displayCounter) && $displayCounter): ?>
-            <div class="slider__counter">
-                <span class="slider__current">1</span>/<?= count($images) ?>
-            </div>
-        <?php endif; ?>
+        <div class="slider__counter">
+            <span class="slider__current">1</span>/<?= count($images) ?>
+        </div>
     <?php endif; ?>
 </div>

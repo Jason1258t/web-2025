@@ -1,0 +1,44 @@
+.overlay {
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(34, 34, 34, 0.5);
+    backdrop-filter: blur(20px);
+    display: none;
+    align-items: center;
+}
+
+.overlay.show {
+    display: flex;
+}
+
+.overlay__content {
+    width: 30%;
+    margin: auto;
+}
+
+.overlay__close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 16px;
+}
+
+.overlay__close-icon {
+    line-height: 1;
+    color: white;
+}
+
+.overlay__counter {
+    position: relative;
+    background: none;
+    margin-top: 24px;
+    font-size: 15px;
+    text-align: center;
+}
