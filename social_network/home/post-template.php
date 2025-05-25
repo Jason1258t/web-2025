@@ -4,7 +4,7 @@ if (!isset($post)) {
     return;
 }
 ?>
-<div class="post">
+<div class="post" data-post-id="<?php echo $post['id']; ?>">
     <div class="post__header">
         <div class="post__user">
             <img
@@ -21,9 +21,9 @@ if (!isset($post)) {
         include "./slider/slider.php";
         ?>
     </div>
-    <div class="post__like">
+    <div class="post__like <?= $post['isLiked'] ? 'active' : '' ?>">
         <img src="../assets/like.png" alt="Like" class="post__like-icon" />
-        <span><?= $post['likesCount'] ?></span>
+        <span class="counter"><?= $post['likesCount'] ?></span>
     </div>
     <?php !empty($post['description']) && print('<p class="post__text">' . htmlspecialchars($post['description']) . '</p>') ?>
     <button class="post__content-toggle">ещё...</button>

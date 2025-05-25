@@ -78,13 +78,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 throw new Error(data.error || "Unknown error");
             }
 
-            // ✅ Успех
             document.querySelector(".form").style.display = "none";
             document.querySelector(".success-message").textContent =
                 "Пост успешно сохранен!";
             document.querySelector(".success-message").style.display = "block";
         } catch (err) {
-            // ⚠️ Ошибка
             alert("Ошибка: " + err.message);
         }
     }

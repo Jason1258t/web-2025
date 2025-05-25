@@ -97,6 +97,7 @@ foreach ($posts as $post) {
     <script type="module" src="slider/postSliders.js"></script>
     <script type="module" src="modal.js"></script>
     <script src="postContentToggle.js"></script>
+    <script src="likes.js"></script>
 </body>
 
 </html>
