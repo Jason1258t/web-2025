@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const counter = slider.querySelector(".slider__counter");
     const input = document.getElementById("file-input");
     const confirm = document.getElementById("confirm");
+    const addZone = document.querySelector(".images-container__add");
 
     const description = document.getElementById("description");
     input.addEventListener("change", handleFiles);
@@ -53,7 +54,38 @@ document.addEventListener("DOMContentLoaded", function () {
         confirm.onclick = slides.length ? create : () => {};
     }
 
-    function create() {
-        console.log("create");
+    async function create() {
+        const json = {
+            user_id: 1, 
+            description: description.value.trim(),
+        };
+
+        const formData = new FormData();
+        formData.append("json", JSON.stringify(json));
+
+        images.forEach((file) => {
+            formData.append("images[]", file);
+        });
+
+        try {
+            const res = await fetch("../data/add_post.php", {
+                method: "POST",
+                body: formData,
+            });
+
+            const data = await res.json();
+            if (!res.ok || !data.success) {
+                throw new Error(data.error || "Unknown error");
+            }
+
+            // ✅ Успех
+            document.querySelector(".form").style.display = "none";
+            document.querySelector(".success-message").textContent =
+                "Пост успешно сохранен!";
+            document.querySelector(".success-message").style.display = "block";
+        } catch (err) {
+            // ⚠️ Ошибка
+            alert("Ошибка: " + err.message);
+        }
     }
 });

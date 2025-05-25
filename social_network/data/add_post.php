@@ -20,69 +20,75 @@ try {
         throw new Exception('Invalid JSON: ' . json_last_error_msg());
     }
 
-    if (empty($input['description'])) {
-        throw new Exception('Description is required');
+    if (isset($input['description']) && strlen($input['description']) > 1000) {
+        throw new Exception('Description must be less than 1000 characters');
     }
 
-    if (strlen($input['description']) > 1000) {
-        throw new Exception('Description must be less than 1000 characters');
+    if (!isset($input['description'])) {
+        $input['description'] = null;
     }
 
     if (!isset($input['user_id']) || !filter_var($input['user_id'], FILTER_VALIDATE_INT)) {
         throw new Exception('Invalid or missing user_id');
     }
 
-    if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
-        throw new Exception('Image file is required and must be uploaded successfully');
+    // ...
+    if (empty($_FILES['images']) || !is_array($_FILES['images']['tmp_name'])) {
+        throw new Exception('At least one image is required');
     }
 
-    $fileTmp = $_FILES['image']['tmp_name'];
-    $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
-    $mimeType = finfo_file($fileInfo, $fileTmp);
-    finfo_close($fileInfo);
-
+    $uploadedFilenames = [];
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-    if (!in_array($mimeType, $allowedTypes)) {
-        throw new Exception('Only JPG, PNG, or GIF images are allowed');
-    }
-
-    $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-    $filename = uniqid('img_') . '.' . $ext;
     $uploadDir = '../images/posts/';
     if (!file_exists($uploadDir)) {
         mkdir($uploadDir, 0755, true);
     }
 
-    $targetPath = $uploadDir . $filename;
-    if (!move_uploaded_file($fileTmp, $targetPath)) {
-        throw new Exception('Failed to save uploaded image');
+    foreach ($_FILES['images']['tmp_name'] as $index => $tmpName) {
+        if ($_FILES['images']['error'][$index] !== UPLOAD_ERR_OK) {
+            throw new Exception('Image upload error at index ' . $index);
+        }
+
+        $mimeType = mime_content_type($tmpName);
+        if (!in_array($mimeType, $allowedTypes)) {
+            throw new Exception("Invalid image type at index $index");
+        }
+
+        $ext = pathinfo($_FILES['images']['name'][$index], PATHINFO_EXTENSION);
+        $filename = uniqid('img_') . '.' . $ext;
+        $targetPath = $uploadDir . $filename;
+
+        if (!move_uploaded_file($tmpName, $targetPath)) {
+            throw new Exception("Failed to save image at index $index");
+        }
+
+        $uploadedFilenames[] = '../images/posts/' . $filename;
     }
 
     $pdo = connectDatabase();
 
+    // Проверка пользователя
     $stmt = $pdo->prepare("SELECT id FROM user WHERE id = ?");
     $stmt->execute([$input['user_id']]);
     if (!$stmt->fetch()) {
         throw new Exception('User not found');
     }
 
+    // Создание поста
     $stmt = $pdo->prepare("INSERT INTO post (description, user_id) VALUES (?, ?)");
-    $stmt->execute([
-        $input['description'],
-        $input['user_id']
-    ]);
+    $stmt->execute([$input['description'], $input['user_id']]);
+    $postId = $pdo->lastInsertId();
 
+    // Вставка изображений
     $stmt = $pdo->prepare("INSERT INTO post_image (post_id, sort_order, image_path) VALUES (?, ?, ?)");
-    $stmt->execute([
-        $pdo->lastInsertId(),
-        0,
-        '../images/posts/' . $filename
-    ]);
+    foreach ($uploadedFilenames as $i => $imgPath) {
+        $stmt->execute([$postId, $i, $imgPath]);
+    }
 
     echo json_encode([
         'success' => true,
         'message' => 'Post created successfully',
-        'image_url' => 'images/posts/' . $filename
+        'images' => $uploadedFilenames
     ]);
 } catch (Exception $e) {
     http_response_code(400);
