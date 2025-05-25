@@ -25,6 +25,7 @@ if (!isset($post)) {
         <img src="../assets/like.png" alt="Like" class="post__like-icon" />
         <span><?= $post['likesCount'] ?></span>
     </div>
-    <?php !empty($post['description']) && print('<p class="post__text">' . htmlspecialchars($post['description']) . '</p> <span class="post__more">...еще</span>') ?>
+    <?php !empty($post['description']) && print('<p class="post__text">' . htmlspecialchars($post['description']) . '</p>') ?>
+    <button class="post__content-toggle">ещё...</button>
     <p class="post__time"><?= htmlspecialchars(date("d M Y", $post["createdAt"])) ?></p>
 </div>

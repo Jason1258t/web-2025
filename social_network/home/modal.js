@@ -24,14 +24,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+
     function openOverlay(images, index) {
         overlay.classList.add("show");
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") closeOverlay();
-        });
+        document.addEventListener("keydown", handleKeydown);
         document.body.style.overflow = "hidden";
         fillSlider(images);
         initSlider(overlaySlider, index, overlayCounter);
+    }
+
+    function handleKeydown(e) {
+        if (e.key === "Escape") closeOverlay();
     }
 
     function fillSlider(images) {
@@ -49,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .forEach((slide) => overlaySlider.removeChild(slide));
 
         overlay.classList.remove("show");
-        document.removeEventListener("keydown", closeOverlay);
+        document.removeEventListener("keydown", handleKeydown);
         document.body.style.removeProperty("overflow");
     }
 });

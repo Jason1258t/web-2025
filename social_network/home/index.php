@@ -96,6 +96,7 @@ foreach ($posts as $post) {
     <?php include "../shared/components/overlays/post_images/overlay.php" ?>
     <script type="module" src="slider/postSliders.js"></script>
     <script type="module" src="modal.js"></script>
+    <script src="postContentToggle.js"></script>
 </body>
 
 </html>
