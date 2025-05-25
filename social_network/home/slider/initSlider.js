@@ -10,7 +10,7 @@ export function initSlider(
     ];
 
     const counter = slider.querySelector(".slider__current");
-
+    
     let currentSlide = startIndex;
 
     if (prevBtn && nextBtn) {

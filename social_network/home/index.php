@@ -82,7 +82,7 @@ foreach ($posts as $post) {
         <div class="nav__item" onclick="redirectToPage('/profile')">
             <img src="../assets/profile.svg" alt="Profile" class="nav__icon" />
         </div>
-        <div class="nav__item">
+        <div class="nav__item" onclick="redirectToPage('/create_post')">
             <img src="../assets/plus.svg" alt="Plus" class="nav__icon" />
         </div>
     </nav>

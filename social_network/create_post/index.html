@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       
+        <link rel="stylesheet" href="../shared/styles/main.css" />
+        <link rel="stylesheet" href="../home//slider/styles.css" />
+         <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="stylesheet"
+            href="../shared/components/overlays/post_images/styles.css"
+        />
+        <title>Home</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <script>
+        function redirectToPage(page) {
+            window.location.href = page;
+        }
+    </script>
+
+    <body>
+        <nav class="nav">
+            <div class="nav__item" onclick="redirectToPage('/home')">
+                <img src="../assets/home.svg" alt="Home" class="nav__icon" />
+            </div>
+            <div class="nav__item" onclick="redirectToPage('/profile')">
+                <img
+                    src="../assets/profile.svg"
+                    alt="Profile"
+                    class="nav__icon"
+                />
+            </div>
+            <div class="nav__item nav__item--active">
+                <img src="../assets/plus.svg" alt="Plus" class="nav__icon" />
+                <div class="nav__dot"></div>
+            </div>
+        </nav>
+        <input
+            type="file"
+            id="file-input"
+            class="input-hidden"
+            accept="image/*"
+            multiple
+        />
+        <main>
+            <div class="images-container" id="drop-zone">
+                <div class="images-container__add">
+                    🖼
+                    <div style="height: 12px"></div>
+                    <button class="button active" id="add-first-image">Добавить фото</button>
+                </div>
+                <div class="slider">
+                    <div class="slider__controls">
+                        <div class="slider__arrows">
+                            <button class="slider__arrow slider__arrow--prev">
+                                <img src="/assets/left.svg" alt="Previous" />
+                            </button>
+                            <button class="slider__arrow slider__arrow--next">
+                                <img src="/assets/right.svg" alt="Next" />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="slider__counter">
+                        <span class="slider__current">1</span
+                        >/<?= count($images) ?>
+                    </div>
+                </div>
+            </div>
+            <div class="add-image" id="add-image">
+                <img src="./plus-square.svg" class="add-image__plus" />
+                Добавить фото
+            </div>
+            <textarea
+                placeholder="Добавьте подпись..."
+                class="textarea"
+                id="description"
+            ></textarea>
+            <button class="button confirm" id="confirm">Поделиться</button>
+        </main>
+    </body>
+    <script type="module" src="./script.js"></script>
+</html>
