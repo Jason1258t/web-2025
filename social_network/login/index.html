@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="styles.css" />
         <title>Login</title>
+        <link rel="stylesheet" href="styles.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -13,23 +13,67 @@
         />
     </head>
     <body>
-        <div class="wrapper">
-            <div class="image">
-                <h1>Войти</h1>
-                <img src="../images/welcome.jpg" alt="login image" />
+        <div class="login">
+            <div class="login__image-wrapper">
+                <h1 class="login__title">Войти</h1>
+                <img
+                    src="../images/welcome.jpg"
+                    alt="Изображение входа"
+                    class="login__image"
+                />
             </div>
 
-            <form action="send" class="form">
-                <p class="about">Электропочта</p>
-                <input type="email" name="email" />
-                <p class="hint-text">
+            <form
+                class="login__form"
+                id="loginForm"
+            >
+                <label class="login__label" for="emailInput">Почта</label>
+                <input
+                    type="email"
+                    id="emailInput"
+                    name="email"
+                    class="login__input"
+                    required
+                />
+                <p class="login__hint">
                     Введите электропочту в формате *****@***.**
                 </p>
-                <p class="about">Пароль</p>
-                <input type="password" name="password" />
-                <input type="button" value="Продолжить" />
+
+                <label class="login__label" for="passwordInput">Пароль</label>
+                <input
+                    type="password"
+                    id="passwordInput"
+                    name="password"
+                    class="login__input"
+                    required
+                />
+
+                <input type="button" value="Продолжить" class="login__submit" />
             </form>
         </div>
+        <script>
+            document
+                .querySelector('input[type="button"]')
+                .addEventListener("click", () => {
+                    const email = document.getElementById("emailInput");
+                    const password = document.getElementById("passwordInput");
+
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    let hasError = false;
+
+                    email.classList.remove("input--error");
+                    password.classList.remove("input--error");
+
+                    if (!emailRegex.test(email.value.trim())) {
+                        email.classList.add("input--error");
+                        hasError = true;
+                    }
+
+                    if (password.value.trim().length < 8) {
+                        password.classList.add("input--error");
+                        hasError = true;
+                    }
+                });
+        </script>
     </body>
 </html>
-
